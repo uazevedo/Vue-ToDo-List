@@ -70,7 +70,7 @@ export default {
       this.addingError = false;
       if (!this.searchInTaskDescription(newTask)) {
         this.tasks.push({ isComplete: false, description: newTask });
-        localStorage.setItem("vueTasks", JSON.stringify(this.tasks));
+        this.saveIntoLocalStorage('vueTasks',this.tasks);
       } else {
         this.addingError = true;
       }
@@ -80,14 +80,13 @@ export default {
       this.tasks = this.tasks.filter(
         (element) => element.description != task.description
       );
+      this.saveIntoLocalStorage('vueTasks',this.tasks);
     },
     toggleTaskStatus(task) {
       task.isComplete = !task.isComplete;
-      localStorage.setItem("vueTasks", JSON.stringify(this.tasks));
+      this.saveIntoLocalStorage('vueTasks',this.tasks);
     },
     saveIntoLocalStorage(key, item) {
-      console.log(key);
-      console.log(item);
       localStorage.setItem(key, JSON.stringify(item));
     },
     getIntoLocalStorage(item) {
