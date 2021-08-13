@@ -1,8 +1,7 @@
 <template>
   <div>
-    <h1 class="text-center">ToDo List</h1>
-
     <input
+      autofocus
       class="form-control"
       v-model="newTask"
       type="text"
