@@ -64,7 +64,7 @@ export default {
   methods: {
     searchInTaskDescription(newTaskDescription) {
       const finded = this.tasks.find(
-        (task) => task.description === newTaskDescription
+        (task) => task.description.toUpperCase() === newTaskDescription.toUpperCase()
       );
       return finded;
     },
