@@ -44,7 +44,9 @@
 </template>
 
 <script>
+import localStorageManager from '../../../mixins/localStorageManager'
 export default {
+  mixins:[localStorageManager],
   data: function () {
     return {
       newTask: "",
@@ -86,24 +88,9 @@ export default {
       task.isComplete = !task.isComplete;
       this.saveIntoLocalStorage('vueTasks',this.tasks);
     },
-    saveIntoLocalStorage(key, item) {
-      localStorage.setItem(key, JSON.stringify(item));
-    },
-    getIntoLocalStorage(item) {
-      if (localStorage.getItem(item))
-        return JSON.parse(localStorage.getItem(item));
-    },
-    persistInLocalStorage() {
-      let key = "vueTasks";
-      if (!localStorage.getItem(key))
-        this.saveIntoLocalStorage(key, this.tasks);
-      else {
-        this.tasks = this.getIntoLocalStorage(key);
-      }
-    },
   },
   created: function () {
-    this.persistInLocalStorage();
+    this.persistInLocalStorage('vueTasks',this.tasks);
   },
 };
 </script>
